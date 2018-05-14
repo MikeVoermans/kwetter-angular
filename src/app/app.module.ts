@@ -1,24 +1,28 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 // App modules/components
 import {CoreModule} from './core/core.module';
-import {AuthModule} from './core/auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
+import {ModalModule} from 'ngx-bootstrap';
+import {ToasterModule} from 'angular5-toaster/dist';
+import {PusherService} from './core/pusher/pusher.service';
 
 @NgModule({
+    providers: [PusherService],
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
-        FormsModule,
+        ReactiveFormsModule,
         CoreModule,
         AppRoutingModule,
         HttpModule,
-        AuthModule,
+        ToasterModule,
+        ModalModule.forRoot(),
     ],
     bootstrap: [AppComponent]
 })

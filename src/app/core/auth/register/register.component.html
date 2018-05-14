@@ -1,63 +1,67 @@
 <div class="login-wrapper ">
-  <!-- START Login Background Pic Wrapper-->
-  <div class="bg-pic">
-    <!-- START Background Pic-->
-    <img src="/assets/img/background.jpg" data-src="assets/img/background.jpg" alt="" class="lazy">
-    <!-- END Background Pic-->
-    <!-- START Background Caption-->
-    <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
-      <h2 class="semi-bold text-white">...</h2>
-      <p class="small">
-        © {{ date() + ' - ' + (+date() + 1) }} EuroDrive B.V.
-      </p>
+    <!-- START Login Background Pic Wrapper-->
+    <div class="bg-pic">
+        <!-- START Background Pic-->
+        <img src="/assets/img/background.jpg" data-src="assets/img/background.jpg" alt="" class="lazy">
+        <!-- END Background Pic-->
+        <!-- START Background Caption-->
+        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+            <h2 class="semi-bold text-white">...</h2>
+            <p class="small">
+                © {{ date() + ' - ' + (+date() + 1) }} EuroDrive B.V.
+            </p>
+        </div>
+        <!-- END Background Caption-->
     </div>
-    <!-- END Background Caption-->
-  </div>
-  <!-- END Login Background Pic Wrapper-->
-  <!-- START Login Right Container-->
-  <div class="login-container bg-white">
-    <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-      <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" width="250" height="55">
-      <p class="p-t-35">Registreer voor een invoice systeem account</p>
-      <!-- START Login Form -->
-      <form id="form-login" class="p-t-15" role="form" (submit)="register()">
-        <!-- START Form Control-->
-        <div class="form-group form-group-default">
-          <label>Gebruikersnaam</label>
-          <div class="controls">
-            <input type="text" [(ngModel)]="username" name="username" placeholder="Gebruikersnaam" class="form-control" required>
-          </div>
+    <!-- END Login Background Pic Wrapper-->
+    <!-- START Login Right Container-->
+    <div class="login-container bg-white">
+        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+            <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" width="250" height="55">
+            <p class="p-t-35">Registreer voor een invoice systeem account</p>
+            <!-- START Login Form -->
+            <form id="form-login" class="p-t-15" role="form" (submit)="register()" [formGroup]="formGroup">
+                <!-- START Form Control-->
+                <div class="form-group form-group-default">
+                    <label>Gebruikersnaam</label>
+                    <div class="controls">
+                        <input type="text" name="username" placeholder="Gebruikersnaam" class="form-control"
+                               formControlName="username" required>
+                    </div>
+                </div>
+                <!-- END Form Control-->
+                <!-- START Form Control-->
+                <div class="form-group form-group-default">
+                    <label>Email</label>
+                    <div class="controls">
+                        <input type="text" name="email" placeholder="Email" class="form-control" formControlName="email"
+                               required>
+                    </div>
+                </div>
+                <!-- END Form Control-->
+                <!-- START Form Control-->
+                <div class="form-group form-group-default">
+                    <label>Wachtwoord</label>
+                    <div class="controls">
+                        <input type="password" class="form-control" name="password" placeholder="Wachtwood"
+                               formControlName="password" required>
+                    </div>
+                </div>
+                <!-- END Form Control-->
+                <!-- START Form Control-->
+                <div class="form-group form-group-default">
+                    <label>Wachtwoord Herhaal</label>
+                    <div class="controls">
+                        <input type="password" class="form-control" name="password_repeat" placeholder="Wachtwood"
+                               formControlName="password_repeat" required>
+                    </div>
+                </div>
+                <!-- END Form Control-->
+                <button class="btn btn-primary btn-cons m-t-10" type="submit">Registreer</button>
+                <br/><a href="/login" class="text-primary">Al een account?</a>
+            </form>
+            <!--END Login Form-->
         </div>
-        <!-- END Form Control-->
-        <!-- START Form Control-->
-        <div class="form-group form-group-default">
-          <label>Email</label>
-          <div class="controls">
-            <input type="text" [(ngModel)]="email" name="email" placeholder="Email" class="form-control" required>
-          </div>
-        </div>
-        <!-- END Form Control-->
-        <!-- START Form Control-->
-        <div class="form-group form-group-default">
-          <label>Wachtwoord</label>
-          <div class="controls">
-            <input type="password" [(ngModel)]="password" class="form-control" name="password" placeholder="Wachtwood" required>
-          </div>
-        </div>
-        <!-- END Form Control-->
-        <!-- START Form Control-->
-        <div class="form-group form-group-default">
-          <label>Wachtwoord Herhaal</label>
-          <div class="controls">
-            <input type="password" [(ngModel)]="password_repeat" class="form-control" name="password_repeat" placeholder="Wachtwood" required>
-          </div>
-        </div>
-        <!-- END Form Control-->
-        <button class="btn btn-primary btn-cons m-t-10" type="submit">Registreer</button>
-        <br/><a href="/login" class="text-primary">Al een account?</a>
-      </form>
-      <!--END Login Form-->
     </div>
-  </div>
-  <!-- END Login Right Container-->
+    <!-- END Login Right Container-->
 </div>

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {detectBody} from '../../../app.helpers';
 
 declare var jQuery: any;
@@ -7,7 +7,7 @@ declare var jQuery: any;
     selector: 'app-basic',
     templateUrl: 'basicLayout.template.html',
 })
-export class BasicLayoutComponent {
+export class BasicLayoutComponent implements OnInit {
 
     public ngOnInit(): any {
         detectBody();
@@ -17,4 +17,7 @@ export class BasicLayoutComponent {
         detectBody();
     }
 
+    getNotification(evt) {
+        console.log(evt);
+    }
 }

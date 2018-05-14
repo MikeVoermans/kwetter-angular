@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-register',
@@ -8,6 +9,9 @@ import {AuthService} from '../auth.service';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
+    public formGroup: FormGroup;
+    public fields;
 
     @Input()
     email = '';
@@ -21,7 +25,11 @@ export class RegisterComponent {
     @Input()
     password_repeat = '';
 
-    constructor(public authService: AuthService, public router: Router) {
+    constructor(private authService: AuthService,
+                private router: Router,
+                private fb: FormBuilder) {
+        this.fields = ['email', 'username', 'password', 'password_repeat'];
+        this.createForm();
     }
 
     /**
@@ -41,6 +49,17 @@ export class RegisterComponent {
 
         return new Date().getFullYear();
 
+    }
+
+    /**
+     * Create form
+     */
+    private createForm() {
+        const obj = {};
+        this.fields.forEach((field) => {
+            obj[field] = new FormControl();
+        });
+        this.formGroup = this.fb.group(obj);
     }
 
 }

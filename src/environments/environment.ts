@@ -5,5 +5,9 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8080/kwetter/api/'
+    apiUrl: 'http://localhost:8080/kwetter/api/',
+    pusher: {
+        key: '13c306ead18f7b4c943a',
+        cluster: 'eu',
+    }
 };

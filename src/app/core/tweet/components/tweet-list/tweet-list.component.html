@@ -1,8 +1,21 @@
-<div class="row animated fadeInRight">
+<div class="row wrapper border-bottom white-bg page-heading ng-scope">
+    <div class="col-lg-10">
+        <h2>Timeline</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Timeline</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<div class="row animated fadeInRight" style="margin-top:15px;">
     <div class="col-md-10">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Activites</h5>
+                <h5>Tweets</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -25,12 +38,12 @@
                 <div>
                     <div class="feed-activity-list">
                         <div class="feed-element" *ngFor="let tweet of tweets">
-                            <a href="#" class="pull-left">
+                            <a [routerLink]="['../tweets/' + tweet.user.id]" class="pull-left">
                                 <img alt="image" class="img-circle"
                                      src="assets/images/profile_picture/{{tweet.user.imagePath}}">
                             </a>
                             <div class="media-body ">
-                                <small class="pull-right">{{tweet.created | hoursAgo}}</small>
+                                <small class="pull-right">{{tweet.created | utcDate | hoursAgo}}</small>
                                 <strong>{{tweet.user.nameFull}}</strong> posted a new message. <br>
                                 <small class="text-muted">{{tweet.created | utcDate | date:'HH:mm'}} -
                                     {{tweet.created | utcDate | date:'dd MMMM yyyy'}}
@@ -40,36 +53,32 @@
                             </div>
                         </div>
                     </div>
-                    <!--<button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Show More-->
-                    <!--</button>-->
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-2">
         <div class="row animated fadeInRight">
-            <div class="row animated fadeInRight">
-                <div class="col-md-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Following</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <div>
-                                <div class="feed-activity-list">
-                                    <div class="feed-element" *ngFor="let user of following">
-                                        <a href="#" class="pull-left">
-                                            <img alt="image" class="img-circle"
-                                                 src="assets/images/profile_picture/{{user.imagePath}}">
-                                        </a>
-                                        <div class="media-body ">
-                                            <strong>{{user.nameFull}}</strong> <br/>
-                                            <small class="text-muted">
-                                                Tweets: {{user.totalTweets}} - Followers: {{user.totalFollowing}} -
-                                                Following:
-                                                {{user.totalFollowing}}
-                                            </small>
-                                        </div>
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Following</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <div class="feed-activity-list">
+                                <div class="feed-element" *ngFor="let user of following">
+                                    <a [routerLink]="['../tweets/' + user.id]">
+                                        <img alt="image" class="img-circle"
+                                             src="assets/images/profile_picture/{{user.imagePath}}">
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{user.nameFull}}</strong> <br/>
+                                        <small class="text-muted">
+                                            Tweets: {{user.totalTweets}} - Followers: {{user.totalFollowing}} -
+                                            Following:
+                                            {{user.totalFollowing}}
+                                        </small>
                                     </div>
                                 </div>
                             </div>
@@ -77,28 +86,28 @@
                     </div>
                 </div>
             </div>
-            <div class="row animated fadeInRight">
-                <div class="col-md-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Followers</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <div>
-                                <div class="feed-activity-list">
-                                    <div class="feed-element" *ngFor="let user of followers">
-                                        <a href="#" class="pull-left">
-                                            <img alt="image" class="img-circle"
-                                                 src="assets/images/profile_picture/{{user.imagePath}}">
-                                        </a>
-                                        <div class="media-body ">
-                                            <strong>{{user.nameFull}}</strong> <br/>
-                                            <small class="text-muted">
-                                                Tweets: {{user.totalTweets}} - Followers: {{user.totalFollowing}} -
-                                                Following:
-                                                {{user.totalFollowing}}
-                                            </small>
-                                        </div>
+        </div>
+        <div class="row animated fadeInRight">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Followers</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <div class="feed-activity-list">
+                                <div class="feed-element" *ngFor="let user of followers">
+                                    <a [routerLink]="['../tweets/' + user.id]">
+                                        <img alt="image" class="img-circle"
+                                             src="assets/images/profile_picture/{{user.imagePath}}">
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{user.nameFull}}</strong> <br/>
+                                        <small class="text-muted">
+                                            Tweets: {{user.totalTweets}} - Followers: {{user.totalFollowing}} -
+                                            Following:
+                                            {{user.totalFollowing}}
+                                        </small>
                                     </div>
                                 </div>
                             </div>

@@ -1,36 +1,34 @@
 import {Injectable} from '@angular/core';
 import {User} from '../user/models/user';
+import {ResourceService} from '../../components/services/resource.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends ResourceService {
 
     public user: User = new User();
 
-    public isAuthenticated = true;
+    public isAuthenticated = false;
 
-    constructor() {
-    }
+    public endpoint = 'authentication';
 
     /**
      * Tries to login at DS
      *
-     * @param username
-     * @param password
      * @returns {any}
+     * @param user
      */
-    login(username: string, password: string) {
-
-        // TODO: Login logic here
-        return null;
-
+    login(user: User) {
+        this.isAuthenticated = true;
+        localStorage.setItem('currentUser', JSON.stringify(user));
     }
+
 
     /**
      * Reset everything, logout
      */
     logout(): void {
 
-        localStorage.removeItem('user');
+        localStorage.removeItem('currentUser');
         this.resetCurrentUser();
 
     }

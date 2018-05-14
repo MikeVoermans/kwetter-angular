@@ -11,6 +11,7 @@ import {NavigationComponent} from '../navigation/navigation.component';
 import {FooterComponent} from '../footer/footer.component';
 import {TopNavbarComponent} from '../topnavbar/topnavbar.component';
 import {TopNavigationNavbarComponent} from '../topnavbar/topnavigationnavbar.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {TopNavigationNavbarComponent} from '../topnavbar/topnavigationnavbar.com
     imports: [
         BrowserModule,
         RouterModule,
-        BsDropdownModule.forRoot()
+        BsDropdownModule.forRoot(),
+        ReactiveFormsModule
     ],
     exports: [
         FooterComponent,
@@ -35,7 +37,7 @@ import {TopNavigationNavbarComponent} from '../topnavbar/topnavigationnavbar.com
         NavigationComponent,
         // TopNavigationLayoutComponent,
         TopNavbarComponent,
-        TopNavigationNavbarComponent
+        // TopNavigationNavbarComponent
     ],
 })
 

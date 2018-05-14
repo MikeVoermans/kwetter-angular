@@ -29,12 +29,18 @@ export abstract class ApiService {
      * @param method
      * @param body
      * @param uri
+     * @param headers
      */
-    public request(method: string, body: any = {}, uri = null) {
+    public request(method: string, body: any = {}, uri = null, headers: HttpHeaders) {
+        let requestHeader: HttpHeaders = headers;
+        if (requestHeader == null) {
+            requestHeader = this.headers;
+        }
+
         return this.http.request(method,
             this.getUrl(uri), {
                 body: body,
-                headers: this.headers
+                headers: requestHeader
             });
     }
 
@@ -46,7 +52,7 @@ export abstract class ApiService {
      * @returns {Observable<R>}
      */
     public get(body: any = {}, uri = null) {
-        return this.request('GET', body, uri);
+        return this.request('GET', body, uri, null);
     }
 
     /**
@@ -57,7 +63,8 @@ export abstract class ApiService {
      * @returns {Observable<R>}
      */
     public post(body: any = {}, uri = null) {
-        return this.request('POST', body, uri);
+        body = this.convertToURLSearchParam(body);
+        return this.request('POST', body, uri, new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'));
     }
 
     /**
@@ -68,7 +75,8 @@ export abstract class ApiService {
      * @returns {Observable<R>}
      */
     public put(body: any = {}, uri = null) {
-        return this.request('PUT', body, uri);
+        body = this.convertToURLSearchParam(body);
+        return this.request('PUT', body, uri, new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'));
     }
 
     /**
@@ -79,7 +87,8 @@ export abstract class ApiService {
      * @returns {Observable<R>}
      */
     public patch(body: any = {}, uri = null) {
-        return this.request('PATCH', body, uri);
+        body = this.convertToURLSearchParam(body);
+        return this.request('PATCH', body, uri, new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'));
     }
 
     /**
@@ -90,7 +99,8 @@ export abstract class ApiService {
      * @returns {Observable<any>}
      */
     public delete(body: any = {}, uri = null) {
-        return this.request('DELETE', body, uri);
+        body = this.convertToURLSearchParam(body);
+        return this.request('DELETE', body, uri, new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'));
     }
 
     /**
@@ -98,7 +108,7 @@ export abstract class ApiService {
      *
      * @returns {string}
      */
-    public getUrl(uri: String) {
+    public getUrl(uri: string) {
 
         let url = environment.apiUrl + this.endpoint;
         if (uri) {
@@ -109,6 +119,18 @@ export abstract class ApiService {
 
         return url;
 
+    }
+
+    // TODO: Remove convert JSON BODY to SearchParams when JAVA EE accepts JSON in PATH REQUEST.
+    private convertToURLSearchParam(body: string): string {
+        if (body == null || body === '') {
+            return '';
+        }
+        const params = new URLSearchParams();
+        Object.keys(body).map(key => {
+            params.set(key, body[key]);
+        });
+        return params.toString();
     }
 
 }

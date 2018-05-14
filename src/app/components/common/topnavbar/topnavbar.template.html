@@ -2,20 +2,53 @@
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <!--<a class="minimalize-styl-2 btn btn-primary " (click)="toggleNavigation()"><i class="fa fa-bars"></i> </a>-->
-            <form role="search" class="navbar-form-custom" method="post" action="#">
+            <button class="minimalize-styl-2 btn btn-warning btn-sm" (click)="openModal(tweetModal)"> Tweeten <i
+                    class="fa fa-twitter"></i></button>
+            <div role="search" class="navbar-form-custom">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search"
+                    <input type="text" placeholder="Search for something..." class="form-control"
+                           nangModelme="top-search"
                            id="top-search">
                 </div>
-            </form>
+            </div>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="#">
+                <a [routerLink]="['../logout']">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
         </ul>
-
+        <ng-template #tweetModal class="inmodal">
+            <form [formGroup]="formGroup" (ngSubmit)="submit()" style="width:100%">
+                <div class="modal-header inmodal">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                            <i class="fa fa-twitter fa-5x modal-icon"></i>
+                            <h4 class="modal-title">Tweet</h4>
+                        </div>
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>
+                            What are you doing??
+                        </strong>
+                    </p>
+                    <div class="form-group">
+                        <textarea class="form-control" style="resize:vertical" title="tweet" rows="5"
+                                  formControlName="message"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">Tweet</button>
+                </div>
+            </form>
+        </ng-template>
     </nav>
 </div>

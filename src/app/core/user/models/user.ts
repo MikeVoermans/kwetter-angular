@@ -1,6 +1,7 @@
 export class User {
 
     public id: number;
+    public password: number;
     public email: string;
     public imagePath: string;
     public nameFirst: string;
@@ -12,6 +13,10 @@ export class User {
     public totalFollowers: number;
     public totalTweets: number;
     public website: string;
+    public biography: string;
+    public follow: boolean;
+
+    public fields = ['id', 'nameFirst', 'nameLast', 'nameUser', 'email', 'imagePath', 'website', 'biography'];
 
     constructor() {
 

@@ -4,6 +4,7 @@ import {UserModule} from './user/user.module';
 import {TweetModule} from './tweet/tweet.module';
 import {CoreRoutingModule} from './core-routing.module';
 import {LayoutsModule} from '../components/common/layouts/layouts.module';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import {LayoutsModule} from '../components/common/layouts/layouts.module';
         CoreRoutingModule,
         LayoutsModule,
         UserModule,
-        TweetModule
+        TweetModule,
+        AuthModule
     ]
 })
 export class CoreModule {

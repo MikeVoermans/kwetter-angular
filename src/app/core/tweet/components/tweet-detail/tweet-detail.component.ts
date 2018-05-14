@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { TweetService } from '../../services/tweet.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {TweetService} from '../../services/tweet.service';
+import {UserService} from '../../../user/services/user.service';
+import {User} from '../../../user/models/user';
 
 @Component({
     selector: 'app-tweet-detail',
@@ -9,20 +11,35 @@ import { TweetService } from '../../services/tweet.service';
 })
 export class TweetDetailComponent implements OnInit {
 
-    public tweet;
+    public tweets;
+    public followers;
+    public following;
+    public user: User;
 
-    constructor(private route: ActivatedRoute,
-                private tweetService: TweetService) {
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                private tweetService: TweetService,
+                private userService: UserService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        this.route.params.subscribe((params: Params) => {
 
-        // this.route.params.subscribe((params: Params) => {
-        //     this.tweetService.one(params['tweetId']).subscribe((res) => {
-        //         this.tweet = res['data'];
-        //     });
-        // });
+            this.userService.one(params['tweetId']).subscribe((res) => {
+                this.user = res['data'];
+            });
 
+            this.userService.allCustom(params['tweetId'], '/tweets').subscribe((res) => {
+                this.tweets = res['data'];
+            });
+
+            this.userService.allCustom(params['tweetId'], '/following').subscribe((res) => {
+                this.following = res['data'];
+            });
+
+            this.userService.allCustom(params['tweetId'], '/followers').subscribe((res) => {
+                this.followers = res['data'];
+            });
+        });
     }
-
 }

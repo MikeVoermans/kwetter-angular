@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Tweet} from '../../tweet/models/tweet';
 
 @Component({
     selector: 'app-login',
@@ -9,16 +11,14 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent {
 
-    userEmails = ['philipsen.rens@gmail.com', 'maartenpeels@gmail.com'];
+    public formGroup: FormGroup;
+    public fields;
 
-    @Input()
-    username = this.userEmails[Math.floor(Math.random() * this.userEmails.length)];
-
-
-    @Input()
-    password = '12345';
-
-    constructor(public authService: AuthService, public router: Router) {
+    constructor(private authService: AuthService,
+                private router: Router,
+                private fb: FormBuilder) {
+        this.fields = ['username', 'password'];
+        this.createForm();
     }
 
     /**
@@ -26,14 +26,11 @@ export class LoginComponent {
      */
     login(): void {
         // Temp: to skip the Login
-        this.router.navigate(['/users']);
-
-        this.authService.login(this.username, this.password).subscribe(() => {
-
-            if (this.authService.isAuthenticated) {
-
-                // Redirect the user
-                this.router.navigate(['/users']);
+        // this.router.navigate(['/users']);
+        this.authService.createCustom(this.prepareSavePayWeight(), '').subscribe((res) => {
+            if (res['success'] === true) {
+                this.authService.login(res['data']);
+                this.router.navigate(['/tweets']);
             }
         });
     }
@@ -44,9 +41,30 @@ export class LoginComponent {
      * @returns {number}
      */
     public date(): number {
-
         return new Date().getFullYear();
+    }
 
+    /**
+     * Create form
+     */
+    private createForm() {
+        const obj = {};
+        this.fields.forEach((field) => {
+            obj[field] = new FormControl();
+        });
+        this.formGroup = this.fb.group(obj);
+    }
+
+    /**
+     * Prepare save form
+     * @returns {Tweet}
+     */
+    private prepareSavePayWeight() {
+        const obj = {};
+        this.fields.forEach((field) => {
+            obj[field] = this.formGroup.value[field] as number;
+        });
+        return obj;
     }
 
 }

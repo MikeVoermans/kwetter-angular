@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform,} from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'utcDate'})
 export class UtcDatePipe implements PipeTransform {
@@ -14,7 +14,7 @@ export class UtcDatePipe implements PipeTransform {
             dateValue.getUTCFullYear(),
             dateValue.getUTCMonth(),
             dateValue.getUTCDate(),
-            dateValue.getUTCHours(),
+            dateValue.getUTCHours() + 5,
             dateValue.getUTCMinutes(),
             dateValue.getUTCSeconds()
         );

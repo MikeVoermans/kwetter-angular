@@ -7,6 +7,7 @@ import {LoginComponent} from './core/auth/login/login.component';
 
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
+    {path: 'logout', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: '', component: BasicLayoutComponent, canActivate: [AuthGuard]},
 ];

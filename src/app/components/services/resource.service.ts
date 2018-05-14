@@ -44,6 +44,11 @@ export abstract class ResourceService extends ApiService {
         return this.post(data);
     }
 
+
+    public createCustom(data: any, customParam: string) {
+        return this.post(data, customParam);
+    }
+
     /**
      * Update a instance of entity
      *

@@ -2,41 +2,45 @@
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
-                <div class="profile-element" dropdown>
-                    <img alt="image" class="img-responsive img-circle" src="assets/images/profile_picture/pirate.png">
-                    <a dropdownToggle>
-                        <span class="block m-t-xs"> <strong class="font-bold">{{user.nameFull}}</strong> <b
-                                class="caret"></b> </span>
-                        <!--<span class="text-muted text-xs block">Art Director <b class="caret"></b> </span>-->
-                    </a>
-                    <ul class="animated fadeInRight dropdown-menu" *dropdownMenu>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Contacts</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
+                <div class="profile-element">
+                    <img alt="image" class="img-responsive img-circle"
+                         src="assets/images/profile_picture/{{user.imagePath}}">
+                    <span class="block m-t-xs">
+                        <strong class="font-bold" style="color: white;">{{user.nameFull}}</strong>
+                    </span>
                 </div>
-                <div class="logo-element">
-                    {{user.nameFirst}}
+                <div class="logo-element" style="color: white">
+                    {{user.nameFull}}
                 </div>
                 <ul class="list-group clear-list m-t" style="color:white;margin-bottom:0px;">
-                    <li class="list-group-item">
-                        Tweets: <span class="pull-right label label-primary" style="padding-bottom: 6px;"> {{user.totalTweets}} </span>
+                    <li class="list-group-item" style="margin-bottom: 5px;">
+                        Tweets <span class="pull-right label label-warning"
+                                     style="padding-bottom: 7px;padding-top:8px;"> {{user.totalTweets}} </span>
                     </li>
-                    <li class="list-group-item">
-                        Following: <span class="pull-right label label-primary" style="padding-bottom: 6px;"> {{user.totalFollowing}} </span>
+                    <li class="list-group-item" style="margin-bottom: 5px;">
+                        Following <span class="pull-right label label-warning"
+                                        style="padding-bottom: 7px;padding-top:8px;"> {{user.totalFollowing}} </span>
                     </li>
-                    <li class="list-group-item">
-                        Followers: <span class="pull-right label label-primary" style="padding-bottom: 6px;"> {{user.totalFollowers}} </span>
+                    <li class="list-group-item" style="margin-bottom: 5px;">
+                        Followers <span class="pull-right label label-warning"
+                                        style="padding-bottom: 7px;padding-top:8px;"> {{user.totalFollowers}} </span>
                     </li>
                 </ul>
-
             </li>
-            <li [ngClass]="{active: activeRoute('dashboards')}">
-                <a [routerLink]="['/starterview']"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
+            <li>
+                <a [routerLink]="['../tweets']"><i class="fa fa-align-left"></i> <span class="nav-label">Timeline</span></a>
             </li>
-            <li [ngClass]="{active: activeRoute('dashboards')}">
-                <a [routerLink]="['/user/1']"><i class="fa fa-user"></i> <span class="nav-label">Profile</span></a>
+            <li>
+                <a [routerLink]="['../tweets/' + user.id]"><i class="fa fa-user"></i> <span
+                        class="nav-label">Profile</span></a>
+            </li>
+            <li>
+                <a [routerLink]="['../users']"><i class="fa fa-users"></i> <span
+                        class="nav-label">Search Users</span></a>
+            </li>
+            <li>
+                <a [routerLink]="['../users/'  + user.id]"><i class="fa fa-wrench"></i> <span
+                        class="nav-label">Settings</span></a>
             </li>
         </ul>
     </div>

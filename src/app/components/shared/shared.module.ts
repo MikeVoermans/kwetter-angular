@@ -10,7 +10,11 @@ import {HoursAgo} from '../pipes/hours-ago';
     imports: [
         CommonModule
     ],
-    declarations: [SafeHtmlPipe, UtcDatePipe, HoursAgo],
+    declarations: [
+        SafeHtmlPipe,
+        UtcDatePipe,
+        HoursAgo
+    ],
     exports: [
         SafeHtmlPipe,
         UtcDatePipe,

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Angular_4_Seed_Project.iml" filepath="$PROJECT_DIR$/.idea/Angular_4_Seed_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/kwetter-angular.iml" filepath="$PROJECT_DIR$/.idea/kwetter-angular.iml" />
     </modules>
   </component>
 </project>

@@ -20,12 +20,12 @@
             <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" width="250" height="55">
             <p class="p-t-35">Login met uw invoice systeem account</p>
             <!-- START Login Form -->
-            <form id="form-login" class="p-t-15" role="form" (submit)="login()">
+            <form id="form-login" class="p-t-15" role="form" (ngSubmit)="login()" [formGroup]="formGroup">
                 <!-- START Form Control-->
                 <div class="form-group form-group-default">
                     <label>Gebruikersnaam</label>
                     <div class="controls">
-                        <input type="text" [(ngModel)]="username" name="username" placeholder="Gebruikersnaam" class="form-control" required>
+                        <input type="text" placeholder="Gebruikersnaam" class="form-control" formControlName="username">
                     </div>
                 </div>
                 <!-- END Form Control-->
@@ -33,12 +33,12 @@
                 <div class="form-group form-group-default">
                     <label>Wachtwoord</label>
                     <div class="controls">
-                        <input type="password" [(ngModel)]="password" class="form-control" name="password" placeholder="Wachtwood" required>
+                        <input type="password" class="form-control" placeholder="Wachtwood" formControlName="password">
                     </div>
                 </div>
 
                 <button class="btn btn-primary btn-cons m-t-10" type="submit">Login</button>
-               <br/><a href="/register" class="text-primary">Nog geen account?</a>
+                <br/><a href="/register" class="text-primary">Nog geen account?</a>
             </form>
             <!--END Login Form-->
         </div>

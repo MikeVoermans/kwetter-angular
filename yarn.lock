@@ -318,6 +318,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular5-toaster@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/angular5-toaster/-/angular5-toaster-1.0.2.tgz#7a112846f2979d8b9bd2e31f05d8bb320155ef76"
+
 animate.css@3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.1.1.tgz#409fa07327bed52f9490a6d352e8dd4d825dd4fb"
